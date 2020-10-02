@@ -1,32 +1,3 @@
-<?php
-session_start();
-require("../../admin/include/connect.php");
-if(isset($_POST['submit'])){
-	$email   =$_POST['email'];
-    $password=$_POST['password'];
-    $query   ="SELECT * FROM customer WHERE customer_email   = '$email' AND
-                                           customer_password = '$password'";
-
-          $result = mysqli_query($conn,$query);
-          $login  = mysqli_fetch_assoc($result);
-          if(!empty($login['customer_id'])){
-            $_SESSION['id']=$login['customer_id'];
-            $_SESSION['name']=$login['customer_name'];
-            $_SESSION['phone']=$login['customer_phone'];
-            $_SESSION['email']=$login['customer_email'];
-            $_SESSION['address']=$login['customer_address'];
-            $_SESSION['image']=$login['customer_image'];
-
-
-            header("location:../public.php");
-          }                              
-          else{
-            $error= "User Not Found";
-          }
-}
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
